@@ -156,3 +156,29 @@ The second processes the transaction. This will require a small amount of xDai t
 ![](/img/node/2tx.png)
 
 4\) The transaction should be initiated and completed within a few seconds. Once completed you can click the link to see the tx in BlockScout and add mGNO to your MetaMask wallet. The mGNO contract address is 0x722fc4DAABFEaff81b97894fC623f91814a1BF68.
+
+
+## Chiado Deposit
+
+:::danger TESTNET
+Only follow this instructions if you are depositing to [Chiado Testnet](/about/networks/chiado).
+:::
+
+To deposit GNO, please follow these steps:
+1) Convert GNO into mGNO (1 GNO = 32 mGNO):
+GNO.aprove(SBCWrapperProxy, Amount):
+to: 0xf907903Be10FC3a885d331C4E225794436a34c9f
+data: 0x095ea7b3000000000000000000000000917947dc7e341d843ab38e91623bcaeb65512b7500000000000000000000000000000000000000000000003635c9adc5dea00000 (approve 1000 GNO)
+
+WrapperProxy.swap(0xf907903Be10FC3a885d331C4E225794436a34c9f, 1000000000000000000, 0x)
+to: 0x917947dC7E341d843ab38e91623bcAeb65512b75
+data: 0x39aca1c1000000000000000000000000f907903be10fc3a885d331c4e225794436a34c9f0000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000
+
+
+2) Generate validator keys
+Follow instructions at https://github.com/gnosischain/validator-data-generator
+E.g.
+docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys ghcr.io/gnosischain/validator-data-generator:latest new-mnemonic --num_validators=1 --mnemonic_language=english
+
+3) Deposit mGNO
+Follow instructions at https://docs.gnosischain.com/node/validator-deposits#deposit-gno-1 , edit the .env file and set the contract addresses for Chiado (TOKEN_ADDRESS, WRAPPER_ADDRESS, DEPOSIT_CONTRACT_ADDRESS)

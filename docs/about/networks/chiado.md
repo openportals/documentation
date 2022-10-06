@@ -30,6 +30,8 @@ mGNO (SBCTokenProxy): [0xe68d8cD2b90bFd08d2Bcf5047A2d9850DA2deFDc](https://block
 
 [Deposit Contract address](https://github.com/gnosischain/consensus-deployment-ansible/blob/master/chiado/custom_config_data/config.yaml#L21) (SBCDepositContractProxy): [0xcD0904AcBF79F228E2c0d6D749cC72019D411995](https://blockscout.chiadochain.net/address/0xcD0904AcBF79F228E2c0d6D749cC72019D411995) 
 
+- See [how to deposit](/node/validator-deposits#chiado-deposit) GNO in testnet
+
 SBCWrapper = [0x5159F5ef48310EBdb7daD09A97f4376Bb207A7FE](https://blockscout.chiadochain.net/address/0x5159F5ef48310EBdb7daD09A97f4376Bb207A7FE) 
 
 ## Bridges with Goerli
