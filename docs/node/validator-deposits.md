@@ -165,20 +165,55 @@ Only follow this instructions if you are depositing to [Chiado Testnet](/about/n
 :::
 
 To deposit GNO, please follow these steps:
-1) Convert GNO into mGNO (1 GNO = 32 mGNO):
-GNO.aprove(SBCWrapperProxy, Amount):
-to: 0xf907903Be10FC3a885d331C4E225794436a34c9f
-data: 0x095ea7b3000000000000000000000000917947dc7e341d843ab38e91623bcaeb65512b7500000000000000000000000000000000000000000000003635c9adc5dea00000 (approve 1000 GNO)
 
-WrapperProxy.swap(0xf907903Be10FC3a885d331C4E225794436a34c9f, 1000000000000000000, 0x)
-to: 0x917947dC7E341d843ab38e91623bcAeb65512b75
-data: 0x39aca1c1000000000000000000000000f907903be10fc3a885d331c4e225794436a34c9f0000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000
+1. Convert GNO into mGNO (1 GNO = 32 mGNO):
 
+    a. Approve
 
-2) Generate validator keys
-Follow instructions at https://github.com/gnosischain/validator-data-generator
-E.g.
-docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys ghcr.io/gnosischain/validator-data-generator:latest new-mnemonic --num_validators=1 --mnemonic_language=english
+    ```
+    GNO.aprove(SBCWrapperProxy, Amount)
+    ```
 
-3) Deposit mGNO
-Follow instructions at https://docs.gnosischain.com/node/validator-deposits#deposit-gno-1 , edit the .env file and set the contract addresses for Chiado (TOKEN_ADDRESS, WRAPPER_ADDRESS, DEPOSIT_CONTRACT_ADDRESS)
+    ```js title="to"
+    0xf907903Be10FC3a885d331C4E225794436a34c9f
+    ```
+
+    ```js title="data (approve 1000 GNO)"
+    0x095ea7b3000000000000000000000000917947dc7e341d843ab38e91623bcaeb65512b7500000000000000000000000000000000000000000000003635c9adc5dea00000
+    ```
+    b. Swap
+    
+    ```
+    WrapperProxy.swap(0xf907903Be10FC3a885d331C4E225794436a34c9f, 1000000000000000000, 0x)
+    ```
+
+    ```js title="to"
+    0x917947dC7E341d843ab38e91623bcAeb65512b75
+    ```
+
+    ```js title="data"
+    0x39aca1c1000000000000000000000000f907903be10fc3a885d331c4e225794436a34c9f0000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000
+    ```
+
+2. Generate validator keys
+
+    Follow instructions at [validator-data-generator](https://github.com/gnosischain/validator-data-generator#gnosis-chain-validators-data-generator) in Github
+
+    ```bash title="example"
+    docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys ghcr.io/gnosischain/validator-data-generator:latest new-mnemonic --num_validators=1 --mnemonic_language=english
+    ```
+
+3. Deposit mGNO
+    Follow instructions the [same instructions for mainnet](/node/validator-deposits#deposit-gno), edit the .env file and set the contract addresses for Chiado:
+
+    ```bash title="TOKEN_ADDRESS"
+    0xf907903Be10FC3a885d331C4E225794436a34c9f
+    ```
+
+    ```bash title="WRAPPER_ADDRESS"
+    0xc5Be8Bf53755a41C2385e7Aa86f6a9E28746f466
+    ```
+
+    ```bash title="DEPOSIT_CONTRACT_ADDRESS"
+    0xb97036A26259B7147018913bD58a774cf91acf25
+    ```
